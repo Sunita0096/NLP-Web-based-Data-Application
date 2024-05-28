@@ -1,0 +1,127 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Job</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Job</h1>
+        <form method="POST" action="{{ url_for('create_job') }}">
+            <div class="form-group">
+                <label for="job_title">Job Title:</label>
+                <input type="text" class="form-control" id="job_title" name="job_title" required>
+            </div>
+            <div class="form-group">
+                <label for="job_description">Job Description:</label>
+                <textarea class="form-control" id="job_description" name="job_description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="job_category">Job Category:</label>
+                <input type="text" class="form-control" id="job_category" name="job_category" required>
+            </div>
+            <div class="form-group">
+                <label for="company">Company:</label>
+                <input type="text" class="form-control" id="company" name="company" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary:</label>
+                <input type="text" class="form-control" id="salary" name="salary" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Job</button>
+        </form>
+    </div>
+</body>
+</html> -->
+
+<!-- job_form.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Job</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <title>Create New Job</title>
+        <form action="/create_job" method="post">
+            <div class="form-group">
+                <label for="job_title">Job Title:</label>
+                <input type="text" class="form-control" id="job_title" name="job_title" value="{{ job_title }}" required>
+            </div>
+            <div class="form-group">
+                <label for="job_description">Job Description:</label>
+                <textarea class="form-control" id="job_description" name="job_description" required rows="8" cols="50">{{ job_description }}</textarea>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="company">Company:</label>
+                <input type="text" class="form-control" id="company" name="company" value="{{ company }}" required>
+                </div>
+                <div class="col">
+                    <label for="location">Job Location:</label>
+                    <input type="text" class="form-control" id="location" name="location" value="{{ location }}" required>
+                </div>
+                <div class="col">
+                    <label for="salary">Salary:</label>
+                    <input type="text" class="form-control" id="salary" name="salary" value="{{ salary }}" required>
+                </div>
+            </div>            
+            <div class="form-group">
+                <label for="job_category">Select a Category:</label>
+                <select class="form-control" id="job_category" name="job_category">
+                    <option value="">Select your choice Category</option>
+                    <option value="Accounting_Finance">Accounting_Finance</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Engineering">Engineering</option>
+                    <!-- Add more category options based on recommendations -->
+                </select>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="predicted_category">Predicted Category:</label>
+                    <input type="text" name="category" value="{{ predicted_category }}">
+                </div>
+                <div class="col text-right">
+                    <label for="action">&nbsp;</label> <!-- Empty label for spacing -->
+                    <button type="submit" class="btn btn-primary" name="action" value="classify">Classify Job</button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" name="action" value="save">Save Job</button>
+            <div class="form-group">
+                <h1> </h1>
+                <a href="{{ url_for('homepage') }}" class="btn btn-primary">Back to Job Listings</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button[name='action']").click(function (e) {
+                e.preventDefault();  // Prevent form submission
+
+                // Determine which button was clicked (Classify or Save)
+                var buttonValue = $(this).val();
+                if (buttonValue === "classify") {
+                    // Make an AJAX request to the Flask route for prediction
+                    $.post('/create_job', {
+                        job_description: $("#job_description").val()
+                    }, function (data) {
+                        // Update the category dropdown with the predicted category
+                        $("#job_category").html(data.predicted_category);
+                        // Update the predicted category span with the prediction
+                        $("#predicted_category").text(data.predicted_category);
+                    });
+                }
+            });
+        });
+    </script> -->
+</body>
+</html>
